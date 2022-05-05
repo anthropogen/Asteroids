@@ -300,6 +300,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1873544336}
+  - component: {fileID: 1873544338}
+  - component: {fileID: 1873544337}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -322,3 +324,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1873544337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873544335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d278ec863fa88448e7d477d954694c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipTemplate: {fileID: 5123395137837107255, guid: a392e8c48f3a14f4f800aa7e1c97e76d, type: 3}
+--- !u!114 &1873544338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873544335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d812d4c556dd4458a753967d4dfdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameFactory: {fileID: 1873544337}

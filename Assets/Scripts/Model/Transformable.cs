@@ -10,6 +10,7 @@ namespace Asteroids.Model
         public event Action Destoyed;
         public Vector2 Position { get; private set; }
         public Quaternion Rotation { get; private set; }
+        public Vector2 Forward => Rotation * Vector3.up;
         public Transformable(Vector2 position, Quaternion rotation)
         {
             Position = position;

@@ -1,15 +1,17 @@
 using Asteroids.Model;
+using System;
 using UnityEngine;
 
 namespace Asteroids.Presenter
 {
     public class Presenter : MonoBehaviour
     {
-        private Transformable model;
         private IUpdatable updatable;
+        protected Transformable Model { get; private set; }
+        protected event Action UpdateAction;
         public void Init(Transformable model)
         {
-            this.model = model;
+            this.Model = model;
             model.PositionChanged += OnPositionChanged;
             model.RotationChanged += OnRotationChanged;
             model.Destoyed += OnDestroyed;
@@ -21,26 +23,25 @@ namespace Asteroids.Presenter
         {
             if (updatable != null)
                 updatable.OnUpdate(Time.deltaTime);
+            UpdateAction?.Invoke();
         }
 
         private void OnDisable()
         {
-            if (model == null)
+            if (Model == null)
                 return;
-            model.PositionChanged -= OnPositionChanged;
-            model.RotationChanged -= OnRotationChanged;
-            model.Destoyed -= OnDestroyed;
-            Debug.Log("Disable");
-
+            Model.PositionChanged -= OnPositionChanged;
+            Model.RotationChanged -= OnRotationChanged;
+            Model.Destoyed -= OnDestroyed;
         }
 
-        private void OnRotationChanged(Quaternion newRotation)
+        protected virtual void OnRotationChanged(Quaternion newRotation)
             => transform.rotation = newRotation;
 
-        private void OnPositionChanged(Vector3 newPosition)
+        protected virtual void OnPositionChanged(Vector3 newPosition)
             => transform.position = newPosition;
 
-        private void OnDestroyed()
+        protected virtual void OnDestroyed()
             => Destroy(gameObject);
     }
 }
