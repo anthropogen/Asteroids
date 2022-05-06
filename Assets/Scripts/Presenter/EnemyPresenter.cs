@@ -4,15 +4,15 @@ using UnityEngine;
 namespace Asteroids.Presenter
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class AsteroidPresenter : Presenter
+    public class EnemyPresenter : Presenter
     {
-        public event Action<Vector2, AsteroidPresenter> Destroyed;
+        public event Action<Vector2, EnemyPresenter> Destroyed;
         public event Action ShipDestoyed;
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            var asteroid = Model as Asteroid;
-            if (asteroid.IsDestroyable)
+            if (Model is Asteroid)
             {
+                var asteroid = Model as Asteroid;
                 Destroyed?.Invoke(transform.position, this);
             }
             if (collision.gameObject.layer == LayerMask.NameToLayer("Ship"))

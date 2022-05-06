@@ -9,6 +9,7 @@ namespace Asteroids.Core
     public class Game : MonoBehaviour
     {
         [SerializeField] private GameFactory gameFactory;
+        [SerializeField] public GameConfig gameConfig;
         private Timer timer;
         private Camera cam;
         private void Awake()
@@ -37,7 +38,10 @@ namespace Asteroids.Core
         private void CreateEnemy()
         {
             var position = GetRandomPos();
-            gameFactory.CreateBigAsteroid(position, GetDirection(position));
+            if (Random.value > gameConfig.UfoCreateChance)
+                gameFactory.CreateBigAsteroid(position, GetDirection(position));
+            else
+                gameFactory.CreateUfoAt(position);
         }
         private void OnShipDestroyed()
         {
@@ -51,7 +55,7 @@ namespace Asteroids.Core
         }
         private Vector2 GetRandomPos()
         {
-            var viewPortPos = Random.insideUnitCircle + new Vector2(0.7f, 0.7f);
+            var viewPortPos = Random.insideUnitCircle.normalized + new Vector2(0.5f, 0.5f);
             var pos = cam.ViewportToWorldPoint(viewPortPos);
             pos.z = 0;
             return pos;

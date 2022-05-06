@@ -205,7 +205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -289,7 +289,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873544335
 GameObject:
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 1873544338}
   - component: {fileID: 1873544337}
   m_Layer: 0
-  m_Name: Root
+  m_Name: ROOT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1873544337
 MonoBehaviour:
@@ -346,6 +346,17 @@ MonoBehaviour:
   - {fileID: 5308605786508805760, guid: 209c949246c1f9b4abe06fe157f58321, type: 3}
   - {fileID: 5308605786508805760, guid: 2450e0409a1d10c47a220725ca5c4296, type: 3}
   - {fileID: 5308605786508805760, guid: e8cb15ae67284734aaeadacb7038e26a, type: 3}
+  derbisTemplate:
+  - {fileID: 6960696777052057708, guid: d7bc2007e8811a3429c29b28f981dd7c, type: 3}
+  - {fileID: 6960696777052057708, guid: cf7c231d42fb25d46a2572c9f586db83, type: 3}
+  - {fileID: 6960696777052057708, guid: 863e0d516e56bc24f912385e96bfbead, type: 3}
+  - {fileID: 6960696777052057708, guid: 07239523e2987a840822ad132839a20f, type: 3}
+  - {fileID: 6960696777052057708, guid: f5845be4e25feb74eb31c130ea3db337, type: 3}
+  - {fileID: 6960696777052057708, guid: 702c8befae7e0d448a5eb6f92f09f908, type: 3}
+  ufoTemplates:
+  - {fileID: 7121928624376406021, guid: d4d17d19791c548488d6fad55be33889, type: 3}
+  - {fileID: 7121928624376406021, guid: da0a37a3d02b6a347b562af4d77645f4, type: 3}
+  gameConfig: {fileID: 11400000, guid: ff3f2e7e38ca2c54e8be7c138a0ea3dd, type: 2}
 --- !u!114 &1873544338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,3 +370,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameFactory: {fileID: 1873544337}
+  gameConfig: {fileID: 11400000, guid: ff3f2e7e38ca2c54e8be7c138a0ea3dd, type: 2}
