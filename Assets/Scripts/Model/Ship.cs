@@ -2,6 +2,7 @@
 
 namespace Asteroids.Model
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Ship : Transformable, IUpdatable
     {
         private float speedMax = 0.05f;
@@ -38,6 +39,6 @@ namespace Asteroids.Model
             Quaternion newRotation = Rotation * Quaternion.Euler(0, 0, axis);
             Rotate(newRotation);
         }
-        
+
     }
 }

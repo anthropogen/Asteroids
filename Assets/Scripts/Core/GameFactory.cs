@@ -1,5 +1,6 @@
 ﻿using Asteroids.Model;
 using Asteroids.Presenter;
+using System;
 using UnityEngine;
 
 namespace Asteroids.Core
@@ -18,6 +19,11 @@ namespace Asteroids.Core
             Ship ship = new Ship(Vector3.zero, Quaternion.identity, 0.05f);
             shipPresenter.Init(ship);
             shipPresenter.InitShip(new ShipInput(), this);
+        }
+
+        internal void CreateBigAsteroid()
+        {
+            throw new NotImplementedException();
         }
 
         public void GetBulletAt(Vector2 position, Quaternion rotation)
