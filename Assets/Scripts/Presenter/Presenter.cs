@@ -15,6 +15,7 @@ namespace Asteroids.Presenter
             model.PositionChanged += OnPositionChanged;
             model.RotationChanged += OnRotationChanged;
             model.Destoyed += OnDestroyed;
+            model.MoveTo(model.Position);
             if (model is IUpdatable)
                 updatable = model as IUpdatable;
         }

@@ -339,6 +339,13 @@ MonoBehaviour:
   shipTemplate: {fileID: 5123395137837107255, guid: a392e8c48f3a14f4f800aa7e1c97e76d, type: 3}
   bulletTemplate: {fileID: 2109536777565745241, guid: 65d93837113263441b21e381e7b38b02, type: 3}
   laserTemplate: {fileID: 4211094953843929228, guid: fef22ddfb34682341b3d262876936394, type: 3}
+  bigAsterodsTemplate:
+  - {fileID: 4635352953135607315, guid: 05f93eaadbf11634a8e6a61a0039416c, type: 3}
+  - {fileID: 4635352953135607315, guid: 3a21477ccc6cd184eb9dfad585bf3efc, type: 3}
+  - {fileID: 5308605786508805760, guid: aa340b99747bca744b4afbdf5c78e49a, type: 3}
+  - {fileID: 5308605786508805760, guid: 209c949246c1f9b4abe06fe157f58321, type: 3}
+  - {fileID: 5308605786508805760, guid: 2450e0409a1d10c47a220725ca5c4296, type: 3}
+  - {fileID: 5308605786508805760, guid: e8cb15ae67284734aaeadacb7038e26a, type: 3}
 --- !u!114 &1873544338
 MonoBehaviour:
   m_ObjectHideFlags: 0
