@@ -337,6 +337,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipTemplate: {fileID: 5123395137837107255, guid: a392e8c48f3a14f4f800aa7e1c97e76d, type: 3}
+  bulletTemplate: {fileID: 2109536777565745241, guid: 65d93837113263441b21e381e7b38b02, type: 3}
+  laserTemplate: {fileID: 4211094953843929228, guid: fef22ddfb34682341b3d262876936394, type: 3}
 --- !u!114 &1873544338
 MonoBehaviour:
   m_ObjectHideFlags: 0

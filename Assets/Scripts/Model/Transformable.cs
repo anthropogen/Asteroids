@@ -28,5 +28,7 @@ namespace Asteroids.Model
         }
         public void Destroy()
             => Destoyed?.Invoke();
+        protected float ValidateLessZero(float value)
+            => Mathf.Clamp(value, 0f, float.MaxValue);
     }
 }

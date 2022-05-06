@@ -1,4 +1,5 @@
-﻿using Asteroids.Model;
+﻿using Asteroids.Core;
+using Asteroids.Model;
 using System;
 using UnityEngine;
 
@@ -6,18 +7,24 @@ namespace Asteroids.Presenter
 {
     public class ShipPresenter : Presenter
     {
+        [SerializeField] private Transform shootPos;
         private Ship ship;
         private ShipInput shipInput;
         private Camera cam;
-        public void InitShip(ShipInput shipInput)
+        private GameFactory gameFactory;
+
+        public void InitShip(ShipInput shipInput, GameFactory gameFactory)
         {
             if (Model == null)
                 throw new NullReferenceException("Ship didn't initialize");
             ship = Model as Ship;
             this.shipInput = shipInput;
+            shipInput.Ship.FireBullet.performed += ctx => CreateBullet();
+            shipInput.Ship.FireLaser.performed += ctx => CreateLaser();
             shipInput.Enable();
             UpdateAction += OnUpdate;
             cam = Camera.main;
+            this.gameFactory = gameFactory;
         }
 
         private void OnUpdate()
@@ -41,6 +48,12 @@ namespace Asteroids.Presenter
             }
         }
 
+        private void CreateBullet()
+            => gameFactory.GetBulletAt(shootPos.position, ship.Rotation);
+
+        private void CreateLaser()
+            => gameFactory.GetLaserAt(shootPos.position, ship.Rotation, transform);
+
         private void KeepShipPositionOnScreen()
         {
             Vector2 viewPortPos = cam.WorldToViewportPoint(ship.Position);
@@ -53,7 +66,11 @@ namespace Asteroids.Presenter
         {
             UpdateAction -= OnUpdate;
             if (shipInput != null)
+            {
+                shipInput.Ship.FireBullet.performed -= ctx => CreateBullet();
+                shipInput.Ship.FireLaser.performed -= ctx => CreateLaser();
                 shipInput.Disable();
+            }
         }
     }
 }

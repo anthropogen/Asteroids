@@ -90,7 +90,7 @@ public partial class @ShipInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4a62d816-8818-416c-9aca-2d635c647c44"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
@@ -101,7 +101,7 @@ public partial class @ShipInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""76480efd-a8f8-4313-a358-c65dbc6225d1"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",

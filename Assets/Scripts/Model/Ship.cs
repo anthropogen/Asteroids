@@ -10,7 +10,7 @@ namespace Asteroids.Model
 
         public Ship(Vector3 position, Quaternion rotation, float speedMax) : base(position, rotation)
         {
-            this.speedMax = ValidateSpeed(speedMax);
+            this.speedMax = ValidateLessZero(speedMax);
         }
 
         public void OnUpdate(float timeDeltaTime)
@@ -38,7 +38,6 @@ namespace Asteroids.Model
             Quaternion newRotation = Rotation * Quaternion.Euler(0, 0, axis);
             Rotate(newRotation);
         }
-        private float ValidateSpeed(float value)
-            => Mathf.Clamp(value, 0f, float.MaxValue);
+        
     }
 }
