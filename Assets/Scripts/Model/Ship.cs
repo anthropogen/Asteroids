@@ -4,20 +4,27 @@ namespace Asteroids.Model
 {
     public class Ship : Transformable, IUpdatable
     {
-        private float speedMovementMax;
-        private float speedTurnMax;
+        private float speedMax = 0.05f;
         private Vector2 input;
-        public Ship(Vector3 position, Quaternion rotation, float speedMovement, float speedTurn) : base(position, rotation)
+        private Vector2 velocity;
+
+        public Ship(Vector3 position, Quaternion rotation, float speedMax) : base(position, rotation)
         {
-            this.speedMovementMax = ValidateSpeed(speedMovement);
-            this.speedTurnMax = ValidateSpeed(speedTurn);
+            this.speedMax = ValidateSpeed(speedMax);
         }
 
         public void OnUpdate(float timeDeltaTime)
         {
-            Vector2 desiredVelocity = input * speedMovementMax * timeDeltaTime;
-            Vector2 position = Position + desiredVelocity;
-            MoveTo(position);
+            if (input.sqrMagnitude == 0)
+            {
+                velocity -= velocity * timeDeltaTime;
+            }
+            else
+            {
+                velocity += input * speedMax * timeDeltaTime;
+                velocity = Vector2.ClampMagnitude(velocity, speedMax);
+            }
+            MoveTo(Position + velocity);
             input = Vector2.zero;
         }
 
