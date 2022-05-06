@@ -1,7 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using Asteroids.Model;
 
 namespace Asteroids.Core
 {

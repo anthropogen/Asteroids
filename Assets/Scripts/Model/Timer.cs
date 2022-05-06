@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
-namespace Asteroids.Core
+namespace Asteroids.Model
 {
     public class Timer
     {

@@ -19,9 +19,11 @@ namespace Asteroids.Presenter
                 throw new NullReferenceException("Ship didn't initialize");
             ship = Model as Ship;
             this.shipInput = shipInput;
-            shipInput.Ship.FireBullet.performed += ctx => CreateBullet();
-            shipInput.Ship.FireLaser.performed += ctx => CreateLaser();
+            shipInput.Ship.FireBullet.performed += ctx => ship.BulletGun.TryShot();
+            shipInput.Ship.FireLaser.performed += ctx => ship.LaserGun.TryShot();
             shipInput.Enable();
+            ship.BulletGun.Shoot += CreateBullet;
+            ship.LaserGun.Shoot += CreateLaser;
             UpdateAction += OnUpdate;
             cam = Camera.main;
             this.gameFactory = gameFactory;
@@ -67,8 +69,10 @@ namespace Asteroids.Presenter
             UpdateAction -= OnUpdate;
             if (shipInput != null)
             {
-                shipInput.Ship.FireBullet.performed -= ctx => CreateBullet();
-                shipInput.Ship.FireLaser.performed -= ctx => CreateLaser();
+                shipInput.Ship.FireBullet.performed -= ctx => ship.BulletGun.TryShot();
+                shipInput.Ship.FireLaser.performed -= ctx => ship.LaserGun.TryShot();
+                ship.BulletGun.Shoot -= CreateBullet;
+                ship.LaserGun.Shoot -= CreateLaser;
                 shipInput.Disable();
             }
         }

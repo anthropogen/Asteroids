@@ -24,7 +24,8 @@ namespace Asteroids.Core
             if (shipPresenter != null)
                 return;
             shipPresenter = Instantiate(shipTemplate);
-            ship = new Ship(Vector3.zero, Quaternion.identity, gameConfig.ShipSpeed);
+            LaserGun laser = new LaserGun(gameConfig.MaxBullets, gameConfig.TimeLaserRestoring);
+            ship = new Ship(Vector3.zero, Quaternion.identity, gameConfig.ShipSpeed, new Gun(), laser);
             shipPresenter.Init(ship);
             shipPresenter.InitShip(new ShipInput(), this);
         }
