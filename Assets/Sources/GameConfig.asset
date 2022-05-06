@@ -15,7 +15,9 @@ MonoBehaviour:
   <ShipSpeed>k__BackingField: 0.05
   <UfoSpeed>k__BackingField: 2
   <AsteroidSpeed>k__BackingField: 3
-  <BulletSpeed>k__BackingField: 3
+  <BulletSpeed>k__BackingField: 10
   <DelayBeforeDestroyBullet>k__BackingField: 3
   <DelayBeforeDestroyLaser>k__BackingField: 1
   <UfoCreateChance>k__BackingField: 0.3
+  <TimeLaserRestoring>k__BackingField: 10
+  <MaxBullets>k__BackingField: 3

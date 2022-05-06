@@ -6,24 +6,27 @@ namespace Asteroids.Model
     public class Timer
     {
         private Vector2 timeDelayRange;
-        private float timeDelay;
-        private float currentTime;
         public event Action TimePassed;
+        public event Action<float, float> TimeChanged;
+        public float CurrentTime { get; private set; }
+        public float TimeDelay { get; private set; }
         public Timer(Vector2 timeDelayRange)
         {
             this.timeDelayRange = timeDelayRange;
-            timeDelay = RandomizeTime();
+            TimeDelay = RandomizeTime();
         }
 
         public void Tick(float timeDeltaTime)
         {
-            if (currentTime > timeDelay)
+            if (CurrentTime > TimeDelay)
             {
-                currentTime = 0;
-                timeDelay = RandomizeTime();
+                CurrentTime = 0;
+                TimeDelay = RandomizeTime();
                 TimePassed?.Invoke();
             }
-            currentTime += timeDeltaTime;
+            else
+                CurrentTime += timeDeltaTime;
+            TimeChanged?.Invoke(CurrentTime, TimeDelay);
         }
         private float RandomizeTime()
             => Random.Range(timeDelayRange.x, timeDelayRange.y);

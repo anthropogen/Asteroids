@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Asteroids.Model
 {
@@ -10,7 +11,7 @@ namespace Asteroids.Model
         private Vector2 velocity;
         public Gun BulletGun { get; private set; }
         public LaserGun LaserGun { get; private set; }
-
+        public event Action<float> SpeedChanged;
         public Ship(Vector3 position, Quaternion rotation, float speedMax, Gun gun, LaserGun laser) : base(position, rotation)
         {
             this.speedMax = ValidateLessZero(speedMax);
@@ -30,6 +31,7 @@ namespace Asteroids.Model
                 velocity = Vector2.ClampMagnitude(velocity, speedMax);
             }
             MoveTo(Position + velocity);
+            SpeedChanged?.Invoke(velocity.magnitude);
             input = Vector2.zero;
             LaserGun.TickTimer(timeDeltaTime);
         }

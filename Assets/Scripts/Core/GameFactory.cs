@@ -14,6 +14,7 @@ namespace Asteroids.Core
         [SerializeField] private EnemyPresenter[] bigAsterodsTemplate;
         [SerializeField] private EnemyPresenter[] derbisTemplate;
         [SerializeField] private EnemyPresenter[] ufoTemplates;
+        [SerializeField] private UiPresenter uiPresenterTemplate;
         [SerializeField] private GameConfig gameConfig;
         private ShipPresenter shipPresenter;
         private Ship ship;
@@ -26,10 +27,10 @@ namespace Asteroids.Core
             shipPresenter = Instantiate(shipTemplate);
             LaserGun laser = new LaserGun(gameConfig.MaxBullets, gameConfig.TimeLaserRestoring);
             ship = new Ship(Vector3.zero, Quaternion.identity, gameConfig.ShipSpeed, new Gun(), laser);
+            CreateUIPresenter(ship);
             shipPresenter.Init(ship);
             shipPresenter.InitShip(new ShipInput(), this);
         }
-
         public void CreateUfoAt(Vector2 position)
         {
             var ufo = Instantiate(ufoTemplates[Random.Range(0, ufoTemplates.Length)], position, Quaternion.identity);
@@ -65,6 +66,11 @@ namespace Asteroids.Core
                 derbis.Init(new Asteroid(position, Quaternion.identity, direction, gameConfig.AsteroidSpeed, false));
                 derbis.ShipDestoyed += OnShipDestoyed;
             }
+        }
+        private void CreateUIPresenter(Ship ship)
+        {
+            var presenter = Instantiate(uiPresenterTemplate);
+            presenter.Init(ship);
         }
         private void OnShipDestoyed()
             => ShipDestroyed?.Invoke();
