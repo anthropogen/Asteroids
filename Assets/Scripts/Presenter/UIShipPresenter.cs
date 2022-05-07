@@ -20,7 +20,6 @@ namespace Asteroids.Presenter
             Subscribe(ship);
         }
 
-
         private void OnTimeToRestoreChanged(float current, float timeRestoring)
             => laserTimeToRestoreText.text = $"Restoring:{timeRestoring - current:0.0})";
 
@@ -28,7 +27,7 @@ namespace Asteroids.Presenter
             => laserCountText.text = $"Lasers{current}/{max}";
 
         private void OnSpeedChanged(float speed)
-            => speedText.text = $"Speed:{Mathf.RoundToInt(speed)}";
+            => speedText.text = $"Speed:{Mathf.RoundToInt(speed * 1000)}";
 
         private void OnRotationChanged(Quaternion rotation)
             => rotationText.text = $"Rotation:{Mathf.RoundToInt(rotation.eulerAngles.z)}°";
