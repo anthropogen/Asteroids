@@ -18,9 +18,7 @@ namespace Asteroids.Model
         }
 
         public override bool CanShoot()
-        {
-            return Bullets > 0;
-        }
+            => Bullets > 0;
 
         public void TickTimer(float timeDeltaTime)
         {

@@ -6,8 +6,8 @@ namespace Asteroids.Presenter
 {
     public class Presenter : MonoBehaviour
     {
+        public Transformable Model { get; private set; }
         private IUpdatable updatable;
-        protected Transformable Model { get; private set; }
         protected event Action UpdateAction;
         public void Init(Transformable model)
         {

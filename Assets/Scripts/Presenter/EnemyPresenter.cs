@@ -1,4 +1,3 @@
-using Asteroids.Model;
 using System;
 using UnityEngine;
 namespace Asteroids.Presenter
@@ -10,18 +9,15 @@ namespace Asteroids.Presenter
         public event Action ShipDestoyed;
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (Model is Asteroid)
-            {
-                var asteroid = Model as Asteroid;
-                Destroyed?.Invoke(transform.position, this);
-            }
             if (collision.gameObject.layer == LayerMask.NameToLayer("Ship"))
             {
                 Destroy(collision.gameObject);
                 ShipDestoyed?.Invoke();
             }
+            Destroyed?.Invoke(transform.position, this);
             Destroy(gameObject);
         }
+
         private void OnDestroy()
         {
             Destroyed = null;

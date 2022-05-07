@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Asteroids.Presenter
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class ShipPresenter : Presenter
     {
         [SerializeField] private Transform shootPos;

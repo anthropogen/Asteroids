@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using Asteroids.Model;
+using UnityEngine;
 using Random = UnityEngine.Random;
-using UnityEngine.SceneManagement;
-using Asteroids.Model;
 
 namespace Asteroids.Core
 {
@@ -12,29 +11,32 @@ namespace Asteroids.Core
         [SerializeField] public GameConfig gameConfig;
         private Timer timer;
         private Camera cam;
+        private int enemyDestroyed;
+        private bool isFinish = false;
         private void Awake()
         {
             gameFactory = gameFactory == null ? GetComponent<GameFactory>() : gameFactory;
             cam = Camera.main;
             timer = new Timer(new Vector2(0.5f, 1.5f));
         }
+
         private void OnEnable()
         {
             timer.TimePassed += CreateEnemy;
             gameFactory.ShipDestroyed += OnShipDestroyed;
+            gameFactory.EnemyDestroyed += OnEnemyDestoyed;
         }
 
 
         private void Start()
-        {
-            gameFactory.CreateShip();
-        }
-
+            => gameFactory.CreateShip();
 
         private void Update()
         {
-            timer.Tick(Time.deltaTime);
+            if (!isFinish)
+                timer.Tick(Time.deltaTime);
         }
+
         private void CreateEnemy()
         {
             var position = GetRandomPos();
@@ -43,9 +45,11 @@ namespace Asteroids.Core
             else
                 gameFactory.CreateUfoAt(position);
         }
+
         private void OnShipDestroyed()
         {
-            SceneManager.LoadScene(0);
+            isFinish = true;
+            gameFactory.CreateFinishUI(enemyDestroyed);
         }
 
         private Vector2 GetDirection(Vector2 position)
@@ -53,6 +57,7 @@ namespace Asteroids.Core
             var viewPortPos = cam.ViewportToWorldPoint(new Vector3(Random.value, Random.value, 0));
             return (new Vector2(viewPortPos.x, viewPortPos.y) - position).normalized;
         }
+
         private Vector2 GetRandomPos()
         {
             var viewPortPos = Random.insideUnitCircle.normalized + new Vector2(0.5f, 0.5f);
@@ -60,10 +65,15 @@ namespace Asteroids.Core
             pos.z = 0;
             return pos;
         }
+
+        private void OnEnemyDestoyed()
+            => enemyDestroyed++;
+        
         private void OnDisable()
         {
             timer.TimePassed -= CreateEnemy;
             gameFactory.ShipDestroyed -= OnShipDestroyed;
+            gameFactory.EnemyDestroyed -= OnEnemyDestoyed;
         }
     }
 }
