@@ -1,5 +1,4 @@
 using Asteroids.Model;
-using System;
 using UnityEngine;
 
 namespace Asteroids.Presenter
@@ -8,7 +7,7 @@ namespace Asteroids.Presenter
     {
         public Transformable Model { get; private set; }
         private IUpdatable updatable;
-        protected event Action UpdateAction;
+
         public void Init(Transformable model)
         {
             this.Model = model;
@@ -25,7 +24,6 @@ namespace Asteroids.Presenter
         {
             if (updatable != null)
                 updatable.OnUpdate(Time.deltaTime);
-            UpdateAction?.Invoke();
         }
 
         private void OnDisable()

@@ -9,6 +9,7 @@ namespace Asteroids.Core
     {
         [SerializeField] private GameFactory gameFactory;
         [SerializeField] public GameConfig gameConfig;
+        [SerializeField] private ShipInputSystem shipInputSystem;
         private Timer timer;
         private Camera cam;
         private int enemyDestroyed;
@@ -29,7 +30,10 @@ namespace Asteroids.Core
 
 
         private void Start()
-            => gameFactory.CreateShip();
+        {
+            ShipInput input = new ShipInput();
+            shipInputSystem.Init(gameFactory.CreateShip(input), input);
+        }
 
         private void Update()
         {
@@ -68,7 +72,7 @@ namespace Asteroids.Core
 
         private void OnEnemyDestoyed()
             => enemyDestroyed++;
-        
+
         private void OnDisable()
         {
             timer.TimePassed -= CreateEnemy;

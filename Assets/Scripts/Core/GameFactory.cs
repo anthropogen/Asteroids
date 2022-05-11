@@ -18,23 +18,21 @@ namespace Asteroids.Core
         [SerializeField] private UIShipPresenter uiShipPresenterTemplate;
         [SerializeField] private FinishUIPresenter finishUiPresenterTemplate;
         [SerializeField] private GameConfig gameConfig;
-        private ShipPresenter shipPresenter;
         private UIShipPresenter uiShipPresenter;
         private Ship ship;
         private LinkedList<EnemyPresenter> enemies = new LinkedList<EnemyPresenter>();
         public event Action ShipDestroyed;
         public event Action EnemyDestroyed;
 
-        public void CreateShip()
+        public Ship CreateShip(ShipInput input)
         {
-            if (shipPresenter != null)
-                return;
-            shipPresenter = Instantiate(shipTemplate);
+            var shipPresenter = Instantiate(shipTemplate);
             LaserGun laser = new LaserGun(gameConfig.MaxBullets, gameConfig.TimeLaserRestoring);
-            ship = new Ship(Vector3.zero, Quaternion.identity, gameConfig.ShipSpeed, new Gun(), laser);
+            ship = new Ship(Vector3.zero, Quaternion.identity, gameConfig.ShipSpeed, new Gun(), laser, Camera.main);
             uiShipPresenter = CreateShipUIPresenter(ship);
             shipPresenter.Init(ship);
-            shipPresenter.InitShip(new ShipInput(), this);
+            shipPresenter.InitShip(input, this);
+            return ship;
         }
 
         public void CreateFinishUI(int enemyDestroyed)
